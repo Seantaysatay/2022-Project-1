@@ -2,137 +2,136 @@ async function loadData() {
     const response = await axios.get('https://data.gov.sg/api/action/datastore_search?resource_id=f1765b54-a209-4718-8d38-a39237f502b3&limit=120000');
     // console.log(response.data.result.records)
     return response.data.result.records
-    
 };
 
-function transformData(rawData, town, year) {
-    let filterFunc = function(transaction) {
-        // if no town is provided
-        if (!town) {
-            return true;
-        } else if (town == transaction.town) {
-            return true;
-        }
-       
-    }
-
-    let filterByYear=function(transaction) {
-        let dateObj = new Date(transaction.month);
-        if (!year) {
-            return true;
-        } else if (year == dateObj.getFullYear()) {
-            return true;
-        }
-
-    }
-
-    let filtered = rawData.filter(filterFunc);
-    let filteredByYear = filtered.filter(filterByYear);
-    let transactions = filteredByYear.map(function(transaction){
-        let dateObj = new Date(transaction.month);
-        return {
-            amount: parseFloat(transaction.resale_price),
-            year: dateObj.getFullYear()
-        }
+//function to get 5-room transaction data over the years
+//5 ROOM
+function transformData_5room(rawData, town, year) {
+    let yearNames = ['2017', '2018', '2019','2020','2021','2022']
     
-    }) 
-    //console.log(transactions)
+    // 1. Transforms API data into format required
+    let transformed =rawData.map(function(transaction){
+        return {
+            'amount': transaction.resale_price,
+            'date': new Date(transaction.month),
+            'town': transaction.town,
+            "flat_type": transaction.flat_type,
+            "resale_price": transaction.resale_price,
+            "storey_range": transaction.storey_range,
+            }
+        })
+        // 2. Filter out for transactions that are 5-room
+    let filter_flat_type = transformed.filter(function(transaction){
+        let result = transaction.flat_type =='5 ROOM'
+        // console.log(result)
+            return result;
+        });
 
-    // create new object to represent the groups
-    // think of groups as a Python dictionary not as an object might be better
+        //3. transform to get year and price of the 5-room flat transaction
+    let five_room_flat = filter_flat_type.map(function(transaction) {
+        return {
+            year: transaction.date.getFullYear(),
+            amount: parseFloat(transaction.amount),
+            rooms: transaction.flat_type
+            }
+        }) 
+        console.log(five_room_flat)
+    // create one array per possible year (2017, 2018 ... 2022)
     let groups = {};
-    for (let i=0; i < 4; i++) {
-        // groups is not an array, it's an object
-        groups[i] = [];  // create one array per possible year (2017, 2018 ... 2022)
-    }
-    //console.log(groups)
+    for (let i=0; i < 6; i++) {
+        groups[yearNames[i]] = [];  
+        }
 
-    // categorize each record we have into the months
-    for (let transaction of transactions) {
-        let year=transaction.year-2017
-        //console.log(groups[year])
-        groups[year].push(transaction)
-    }
+    // categorize each record we have into the years
+    for (let transaction of five_room_flat) {
+    let year=transaction.year-2017
+        // console.log(groups[year])
+        groups[yearNames[year]].push(transaction)
+        }
 
     let series = [];
     let reducer = function(sum, current) {
         return sum + current.amount
-    }
-
-    // groups is an object
-    // `let year in groups` will go through the keys of the groups object
+        }
+    
+    //create the 5-room data input
     for (let year in groups) {
-        let totalNumberOfTransactions = groups[year].length;
-        //console.log((groups[year].reduce(reducer, 0)/totalNumberOfTransactions).toFixed(0))
-        // console.log(groups[year].length)
+    let totalNumberOfTransactions = groups[year].length;
+
         let coordinate ={
             x: year,
             y: (groups[year].reduce(reducer, 0)/totalNumberOfTransactions).toFixed(0)
+            }
+            series.push(coordinate)
+                
         }
-        series.push(coordinate)
+        console.log(series)
+        return series;
+    };
+
+    //4 ROOM
+    function transformData_4room(rawData, town, year) {
+        let yearNames = ['2017', '2018', '2019','2020','2021','2022']
         
-    }
-    return series;
-}
+        // 1. Transforms API data into format required
+        let transformed =rawData.map(function(transaction){
+            return {
+                'amount': transaction.resale_price,
+                'date': new Date(transaction.month),
+                'town': transaction.town,
+                "flat_type": transaction.flat_type,
+                "resale_price": transaction.resale_price,
+                "storey_range": transaction.storey_range,
+                }
+            })
+            // 2. Filter out for transactions that are 5-room
+        let filter_flat_type = transformed.filter(function(transaction){
+            let result = transaction.flat_type =='4 ROOM'
+            // console.log(result)
+                return result;
+            });
+    
+            //3. transform to get year and price of the 4-room flat transaction
+        let four_room_flat = filter_flat_type.map(function(transaction) {
+            return {
+                year: transaction.date.getFullYear(),
+                amount: parseFloat(transaction.amount),
+                rooms: transaction.flat_type
+                }
+            }) 
+            
+        // create one array per possible year (2017, 2018 ... 2022)
+        let groups = {};
+        for (let i=0; i < 6; i++) {
+            groups[yearNames[i]] = [];  
+            }
+    
+        // categorize each record we have into the years
+        for (let transaction of four_room_flat) {
+        let year=transaction.year-2017
+            // console.log(groups[year])
+            groups[yearNames[year]].push(transaction)
+            }
+    
+        let series = [];
+        let reducer = function(sum, current) {
+            return sum + current.amount
+            }
+        
+        //create the 4-room data input
+        for (let year in groups) {
+        let totalNumberOfTransactions = groups[year].length;
+    
+            let coordinate ={
+                x: year,
+                y: (groups[year].reduce(reducer, 0)/totalNumberOfTransactions).toFixed(0)
+                }
+                series.push(coordinate)
+                    
+            }
+            console.log(series)
+            return series;
+        };
 
-// function transformDataEx(rawData, country, year) {
-//     let filterFunc = function(record) {
-//         // if no country is provided
-//         if (!country) {
-//             return true;
-//         } else if (country == record.billing_address.country) {
-//             return true;
-//         }
-//         // one-liner
-//         // return !country || country == record.billing_address.country;
-//     }
 
-//     let filterByYear=function(record) {
-//         let dateObj = new Date(record.completed_at);
-//         if (!year) {
-//             return true;
-//         } else if (year == dateObj.getFullYear()) {
-//             return true;
-//         }
-//     }
-
-
-//     let earnings = rawData.filter(filterFunc)
-//                           .filter(filterByYear)
-//                           .map(function(record){
-//                             let dateObj = new Date(record.completed_at);
-//                             return {
-//                                 amount: record.payment.amount,
-//                                 month: dateObj.getMonth()
-//                             }
-//                         })
-
-//     // create new object to represent the groups
-//     // think of groups as a Python dictionary not as an object might be better
-//     let groups = {};
-//     for (let i =0; i < 12; i++) {
-//         // groups is not an array, it's an object
-//         groups[i] = [];  // create one array per possible month
-//     }
-
-//     // categorize each record we have into the months
-//     for (let record of earnings) {
-//         groups[record.month].push(record);
-//     }
-
-//     let series = [];
-//     let reducer = function(total, record) {
-//         return total + record.amount;
-//     }
-//     // groups is an object
-//     // `let month in groups` will go through the keys of the groups object
-//     for (let month in groups) {
-//         let group = groups[month];
-//         series.push({
-//             x: month,
-//             y: group.reduce(reducer, 0)
-//         })
-//     }
-//     return series;
-// }
 
