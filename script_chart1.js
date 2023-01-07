@@ -5,7 +5,15 @@ window.addEventListener("DOMContentLoaded", async function () {
     // updateChart(chart, transformed, 'Average price');
 
     document.querySelector('#checkbox5room').addEventListener('change', async function () {
-        updateChart(chart, transformed, 'Average price');
+        
+        let checkBox = document.getElementById("checkbox5room");
+        // If the checkbox is checked, display the line
+        if (checkBox.checked ==git add true){
+            alert('checked')
+          updateChart(chart, transformed, 'Average 5-room Price');
+        } else {
+            chart.hideSeries('Average 5-room Price')
+        }
     })
 
 })
