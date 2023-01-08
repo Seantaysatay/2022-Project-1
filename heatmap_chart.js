@@ -13,19 +13,19 @@ const options_heat =  {
     plotOptions: {
         treemap: {
           enableShades: true,
-          shadeIntensity: 0.7,
+          shadeIntensity: 0.8,
           reverseNegativeShade: true,
           colorScale: {
             ranges: [
               {
-                from: 7000,
-                to: 15000,
-                color: '#CD363A' //red
+                from: 6000,
+                to: 12000,
+                color:'#52B12C'   //red
               },
               {
                 from: 0,
-                to: 7000,
-                color: '#52B12C' //green
+                to: 6000,
+                color: '#CD363A' //green
               }
             ]
           }
