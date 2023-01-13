@@ -11,3 +11,6 @@ Interactive Features to have:
 ● Allow users to filter average HDB resale prices based on a few variables, such as town, flat type and storey range. 
 ● Display filtered data as a line chart 
 ● Provide more information in the form of other charts, such as heatmap and synchronous charts. 
+
+Data reference:
+https://data.gov.sg/dataset/resale-flat-prices
