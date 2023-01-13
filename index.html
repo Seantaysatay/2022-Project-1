@@ -15,129 +15,142 @@
   <!-- <input type="text" id="search-terms"/>
     <button id="search-btn">Search</button> -->
   <Section class="header">
-    <h2>HDB Resale Trends</h2>
-    <p align="center">In recent times, HDB resale prices have been making headlines.<br>
-      The following charts display information to illustrate some trends. </p>
+    <h1 align="center">HDB Resale Trends</h1>
+    <h3 align="center">In recent times, HDB resale prices have been making headlines.<br>
+      The following charts display information to illustrate some trends. </h3>
   </Section>
+  <br>
+  <br>
+  <div class="row-align-items-center">
+    <div class="d-flex justify-content-center" >
+      <h4>This chart displays the average price trends of different HDB flat-types from 2017-2022.
+        <br>Since 2020, prices have risen sharply across the board.
+      </h4>
+    </div>
+  </div>
+  <br>
 
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center">
+      <div class="row">
+        <div class="col-sm-4" style="background-color:#BFEAF5;">
+          <div class='col'>
+
+            <div class="townselector"><strong>Select Town:</strong></div>
+            <select name="towns" id="towndropdown">
+
+              <option value="">ALL</option>
+              <option value="ANG MO KIO">ANG MO KIO</option>
+              <option value="BEDOK">BEDOK</option>
+              <option value="BISHAN">BISHAN</option>
+              <option value="BUKIT MERAH">BUKIT MERAH</option>
+              <option value="BUKIT BATOK">BUKIT BATOK</option>
+              <option value="CENTRAL AREA">CENTRAL AREA</option>
+              <option value="BUKIT PANJANG">BUKIT PANJANG</option>
+              <option value="GEYLANG">GEYLANG</option>
+              <option value="BUKIT TIMAH">BUKIT TIMAH</option>
+              <option value="CHOA CHU KANG">CHOA CHU KANG</option>
+              <option value="CLEMENTI">CLEMENTI</option>
+              <option value="PUNGGOL">PUNGGOL</option>
+              <option value="HOUGANG">HOUGANG</option>
+              <option value="QUEENSTOWN">QUEENSTOWN</option>
+              <option value="JURONG EAST">JURONG EAST</option>
+              <option value="JURONG WEST">JURONG WEST</option>
+              <option value="KALLANG/WHAMPOA">KALLANG/WHAMPOA</option>
+              <option value="MARINE PARADE">MARINE PARADE</option>
+              <option value="PASIR RIS">PASIR RIS</option>
+              <option value="SEMBAWANG">SEMBAWANG</option>
+              <option value="SENGKANG">SENGKANG</option>
+              <option value="SERANGOON">SERANGOON</option>
+              <option value="TAMPINES">TAMPINES</option>
+              <option value="TOA PAYOH">TOA PAYOH</option>
+              <option value="WOODLANDS">WOODLANDS</option>
+              <option value="YISHUN">YISHUN</option>
+
+            </select>
+          </div>
+        </div>
+        
+
+        <div class="col-sm-4" style="background-color:#86E5FF;">
+          <br>
+
+          <div id="checkbox">
+            <div class="para"> Select Flat Type: </div>
+
+            <input type="checkbox" id="flatType" name="flatType" value="2 ROOM" checked>
+            <label for="flatType">2 ROOM</label><br>
+
+            <input type="checkbox" id="flatType" name="flatType" value="3 ROOM" checked>
+            <label for="flatType">3 ROOM</label><br>
+
+            <input type="checkbox" id="flatType" name="flatType" value="4 ROOM" checked>
+            <label for="flatType">4 ROOM</label><br>
+
+            <input type="checkbox" id="flatType" name="flatType" value="5 ROOM" checked>
+            <label for="flatType">5 ROOM</label><br>
+          </div>
+
+        </div>
+
+        <div class="col-sm-4" style="background-color:#5BC0F8;">
+          <div id="radio">
+            <br>
+            <div class="para"> Select Floor:</div>
+
+            <input type="radio" id="radiobtn" name="floor" value="" checked>
+            <label for="radiotbn">All Floors</label><br>
+
+            <input type="radio" id="radiobtn" name="floor" value="01 TO 03">
+            <label for="radiotbn">01 TO 03</label><br>
+
+            <input type="radio" id="radiobtn" name="floor" value="04 TO 06">
+            <label for="radiotbn">04 TO 06</label><br>
+
+            <input type="radio" id="radiobtn" name="floor" value="07 TO 09">
+            <label for="radiotbn">07 TO 09</label><br>
+
+            <input type="radio" id="radiobtn" name="floor" value="10 TO 12">
+            <label for="radiotbn">10 TO 12</label><br>
+
+            <input type="radio" id="radiobtn" name="floor" value="13 TO 15">
+            <label for="radiotbn">13 TO 15</label><br>
+
+            <input type="radio" id="radiobtn" name="floor" value="16 TO 18">
+            <label for="radiotbn">16 TO 18</label><br>
+
+            <input type="radio" id="radiobtn" name="floor" value="19 TO 21">
+            <label for="radiotbn">19 TO 21</label><br>
+
+            <input type="radio" id="radiobtn" name="floor" value="22 TO 24">
+            <label for="radiotbn">22 TO 24</label><br>
+            <br>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <section class="container-fluid px-10" id="first">
     <div class="row-align-items-center">
-      <div class="col text-center">
-        <h5>This chart displays the average price trends of <br>different HDB flat-types from 2017-2022.
-          <br>Since 2020, prices have risen sharply across all flat-types.
-        </h5>
+
+      <!-- chart 1 -->
+
+      <div style="height: 60vh" class="chart" align="center" >
+        <div id="linechart"></div>
       </div>
 
-      <div class="col" align="center">
-        <!-- <input type="checkbox" id="checkbox5room" name="5-room" value="5-room" checked>
-        <label for="5-room">5-room</label><br>
-
-        <input type="checkbox" id="checkbox4room" name="4-room" value="4-room" checked>
-        <label for="4-room">4-room</label><br>
-
-        <input type="checkbox" id="checkbox3room" name="3-room" value="3-room" checked>
-        <label for="3-room">3-room</label><br>
-
-        <input type="checkbox" id="checkbox2room" name="2-room" value="2-room" checked>
-        <label for="2-room">2-room</label><br> -->
-
-        <div class='col'>
-
-          <div class="townselector">Select Town:</div>
-          <select name="towns" id="towndropdown">
-
-            <option value="">ALL</option>
-            <option value="ANG MO KIO">ANG MO KIO</option>
-            <option value="BEDOK">BEDOK</option>
-            <option value="BISHAN">BISHAN</option>
-            <option value="BUKIT MERAH">BUKIT MERAH</option>
-            <option value="BUKIT BATOK">BUKIT BATOK</option>
-            <option value="CENTRAL AREA">CENTRAL AREA</option>
-            <option value="BUKIT PANJANG">BUKIT PANJANG</option>
-            <option value="GEYLANG">GEYLANG</option>
-            <option value="BUKIT TIMAH">BUKIT TIMAH</option>
-            <option value="CHOA CHU KANG">CHOA CHU KANG</option>
-            <option value="CLEMENTI">CLEMENTI</option>
-            <option value="PUNGGOL">PUNGGOL</option>
-            <option value="HOUGANG">HOUGANG</option>
-            <option value="QUEENSTOWN">QUEENSTOWN</option>
-            <option value="JURONG EAST">JURONG EAST</option>
-            <option value="JURONG WEST">JURONG WEST</option>
-            <option value="KALLANG/WHAMPOA">KALLANG/WHAMPOA</option>
-            <option value="MARINE PARADE">MARINE PARADE</option>
-            <option value="PASIR RIS">PASIR RIS</option>
-            <option value="SEMBAWANG">SEMBAWANG</option>
-            <option value="SENGKANG">SENGKANG</option>
-            <option value="SERANGOON">SERANGOON</option>
-            <option value="TAMPINES">TAMPINES</option>
-            <option value="TOA PAYOH">TOA PAYOH</option>
-            <option value="WOODLANDS">WOODLANDS</option>
-            <option value="YISHUN">YISHUN</option>
-
-          </select>
-
-          <div id="checkboxbtn">
-            <input type="checkbox" id="flatType" name="flatType" value="2 ROOM">
-            <label for="flatType">2 ROOM</label><br>
-
-            <input type="checkbox" id="flatType" name="flatType" value="3 ROOM">
-            <label for="flatType">3 ROOM</label><br>
-
-            <input type="checkbox" id="flatType" name="flatType" value="4 ROOM">
-            <label for="flatType">4 ROOM</label><br>
-
-            <input type="checkbox" id="flatType" name="flatType" value="5 ROOM">
-            <label for="flatType">5 ROOM</label><br>
-          </div>
-
-          
-          <div id="radio">
-          <div class="para"> Select Floor: </div>
-          <input type="radio" id="radiobtn" name="floor" value="01 TO 03">
-          <label for="radiotbn1">01 TO 03</label><br>
-        
-          <input type="radio" id="radiobtn" name="floor" value="04 TO 06">
-          <label for="radiotbn2">04 TO 06</label><br>
-        
-          <input type="radio" id="radiobtn" name="floor" value="07 TO 09">
-          <label for="radiotbn">07 TO 09</label><br>
-        
-          <input type="radio" id="radiobtn" name="floor" value="10 TO 12">
-          <label for="radiotbn">10 TO 12</label><br>
-          
-          <input type="radio" id="radiobtn" name="floor" value="13 TO 15">
-          <label for="radiotbn">13 TO 15</label><br>
-          
-          <input type="radio" id="radiobtn" name="floor" value="16 TO 18">
-          <label for="radiotbn">16 TO 18</label><br>
-          
-          <input type="radio" id="radiobtn" name="floor" value="19 TO 21">
-          <label for="radiotbn">19 TO 21</label><br>
-        
-          <input type="radio" id="radiobtn" name="floor" value="22 TO 24">
-          <label for="radiotbn">22 TO 24</label><br>  
-
-        </div>
-        </div>
-
-
-        <!-- chart 1 -->
-
-        <div style="height: 60vh" class="chart">
-          <div id="linechart"></div>
-        </div>
-
-      </div>
+    </div>
     </div>
   </section>
 
 
   <section class="container-fluid px-10" id="second">
     <div class="col text-center">
-      <div class="col">
-        <h5>This is a synchronised chart showing the trends in <br>Average Price and Volume of Transactions</h5>
+      <div class="d-flex justify-content-center" >
+        <h4>This is a synchronised chart showing the trends in <br>Average Price and Volume of Transactions</h4>
       </div>
       <div class="col" align="center">
 
@@ -157,8 +170,8 @@
 
   <section class="container-fluid px-10" id="third">
     <div class="col text-center">
-      <div class="col">
-        <h5>This treemap chart displays the Transaction Quantity <br>in each town from 2017-2022 for each town</h5>
+      <div class="d-flex justify-content-center">
+        <h4>This treemap chart displays the Transaction Quantity in each town from 2017-2022 for each town</h4>
 
       </div>
       <div class="col" align="center">
