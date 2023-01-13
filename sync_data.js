@@ -5,7 +5,7 @@ async function loadData() {
 }
 
 // get the average price of all HDB flats over the years
-function transformData(rawData) {
+function transformData_price(rawData) {
     //transform data to get price and date array
     let yearNames = ['2017', '2018', '2019', '2020', '2021', '2022']
 
@@ -63,7 +63,7 @@ function transformData(rawData) {
         series.push(coordinate)
 
     }
-    console.log(series)
+    // console.log(series)
     return series;
 };
 
@@ -124,6 +124,6 @@ function transactionsData(rawData) {
         series.push(coordinate)
 
     }
-    console.log(series)
+    // console.log(series)
     return series;
 };
