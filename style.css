@@ -1,0 +1,30 @@
+body{
+  background: #fffafa;
+} 
+
+h2 {
+    text-align: center;
+  }
+
+.col {
+  padding-top: 2em;
+}
+
+.header{
+  background-color: #00008B;
+  padding: 50px;
+  color: white
+}
+
+h4 {
+  background-color:#BFEAF5;
+  padding: 1em
+}
+
+#towndropdown {
+  width: 70px;
+}
+
+.para {
+  font-weight: bold;
+}
