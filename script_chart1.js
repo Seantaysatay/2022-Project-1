@@ -1,7 +1,8 @@
 let options = {
   'chart': {
       'type': 'line',
-      'height': '100%'
+      'height': '100%',
+      'width': '80%'
   },
   'series': [],
   'noData': {
@@ -30,7 +31,7 @@ window.addEventListener("DOMContentLoaded", async function() {
   
     let dropdownlist = document.querySelector('#towndropdown')
     dropdownlist.addEventListener('change', function() {
-      alert('dropdown-ed')
+      // alert('dropdown-ed')
       let town = document.querySelector('#towndropdown').value
       console.log(town)
       let floorType;
@@ -45,9 +46,9 @@ window.addEventListener("DOMContentLoaded", async function() {
   
       
   
-      let checkboxesblock = document.querySelector('#checkboxbtn')
-      checkboxesblock.addEventListener('change', function() {
-        alert('checkbox-ed')
+      let checkboxesection = document.querySelector('#checkbox')
+      checkboxesection.addEventListener('change', function() {
+        // alert('checkbox-ed')
         let checkboxes = document.querySelectorAll('#flatType');
         let selectedboxes = []
         for (let checkbox of checkboxes) {
