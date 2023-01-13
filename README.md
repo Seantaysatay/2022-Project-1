@@ -3,7 +3,8 @@
 Site owner's goals: 
 Since 2020, the prices of HDB resale flats have been rising rapidly. This served as a motivation to embark on this project; to explore HDB resale trends I was curious about.
 
-User's goals: I want to know more about the history of my region and want an app that shows me how to get to historical places of interest. 
+User's goals: 
+I want to know more about the history of my region and want an app that shows me how to get to historical places of interest. 
 
 Interactive Features to have: 
 ● Read historical data of HDB resale transactions from an updated government data source 
